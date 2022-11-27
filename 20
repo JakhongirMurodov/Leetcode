@@ -1,0 +1,21 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if len(s) % 2 != 0:
+            return False
+        
+        stack = []
+        
+        openBrack = {"(" : 0, "{" : 1, "[" : 2}
+        closeBrack = {")" : 0, "}" : 1, "]" : 2}
+        
+        for elem in s:
+            if elem in openBrack:
+                stack.append(elem)
+            else:
+                if len(stack) == 0:
+                    return False
+                else:
+                    x = stack.pop()
+                    if openBrack[x] != closeBrack[elem]:
+                        return False
+        return len(stack) == 0
